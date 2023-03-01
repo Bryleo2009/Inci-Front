@@ -8,11 +8,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './_module/material/material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import * as $ from 'jquery'; // Agrega esta línea
+import * as $ from 'jquery';
+import { DashboardComponent } from './page/dashboard/dashboard.component';
+import { IncidenciaComponent } from './page/dashboard/incidencia/incidencia.component'; // Agrega esta línea
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent,
+    IncidenciaComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +26,8 @@ import * as $ from 'jquery'; // Agrega esta línea
     HttpClientModule,
     FormsModule,
     MaterialModule,
-    NgbModule
+    NgbModule,
+    FontAwesomeModule
   ],
   exports: [
     MaterialModule

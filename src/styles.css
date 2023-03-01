@@ -1,4 +1,201 @@
-/* You can add global styles to this file, and also import other style files */
+/*root*/
+/*@font-face {
+    font-family: BalooBhai;
+    src: url(./assets/Font/BalooBhai.ttf);
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@font-face {
+    font-family: Readex;
+    src: url(./assets/Font/Readex.ttf);
+}
+
+@font-face {
+    font-family: Signika;
+    src: url(./assets/Font/Signika.ttf);
+}*/
+
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+
+:root {
+    --Titulo: font-family: 'Tilt Neon', cursive;
+    --Titulo-size: 35px;
+    --Subtitulo: font-family: 'Tilt Neon', cursive;
+    --Subtitulo-size: 32px;
+    --Parrafo: font-family: 'Tilt Neon', cursive;
+    --Parrafo-size: 18px;
+}
+
+ofsystem>a:link,
+ofsystem>a:visited,
+ofsystem>a:active,
+ofsystem>a:hover {
+    text-decoration: none;
+    color: #003261 !important;
+    font-size: 14px;
+}
+
+/* ------------------------------------------------------------------- 
+     * ## colors 
+     * ------------------------------------------------------------------- */
+:root {
+    --color-nav: #F8F9FA;
+    --color-prin: #0e71d2;
+    --color-secu: #00364B;
+    --color-terci: #F2188F;
+
+    --color-black: #111111;
+    --color-white: #ffffff;
+}
+
+
+.row {
+    margin: auto;
+}
+
+/******leader*/
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite
+}
+
+.loader::before,
+.loader::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid var(--color-prin);
+    animation: prixClipFix 2s linear infinite;
+}
+
+.loader::after {
+    border-color: var(--color-white);
+    animation: prixClipFix 2s linear infinite, rotate 0.5s linear infinite reverse;
+    inset: 6px;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes prixClipFix {
+    0% {
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
+    }
+
+    25% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
+    }
+
+    50% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
+    }
+
+    75% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%)
+    }
+
+    100% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0)
+    }
+}
+
+.preloader {
+    background: var(--color-secu);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 9999;
+    clip-path: circle(142% at 100% 0);
+    transition: clip-path 0.3s ease-in-out;
+}
+
+.preleader-oculto {
+    clip-path: circle(0% at 100% 0);
+}
+
+/****generales*/
+
+* {
+    font-family: var(--Parrafo);
+    font-size: var(--Parrafo-size);
+}
+
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #ebebeb;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--color-terci);
+    border-radius: 20px;
+    border: 3px solid #ebebeb;
+}
+
+html {
+    line-height: 1.15;
+    /* 1 */
+    -webkit-text-size-adjust: 100%;
+    /* 2 */
+
+}
+
+a {
+    color: var(--color-black);
+}
+
+a:link, a:visited, a:active {
+    text-decoration:none;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+.icono>i {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.title > h1 {
+    font-size: var(--Titulo-size);
+    color: var(--color-prin)
+}
+
+.btn-primary {
+    background-color: #2aa746;
+    border: 0;
+}
+
+.btn-primary:hover{
+    background-color: #009721;
+    border: 0;
+}
+
+.btn-secondary{
+    background-color: var(--color-prin);
+    border: 0;
+}
+
+.btn-secondary:hover{
+    background-color: #1460ad;
+    border: 0;
+}
