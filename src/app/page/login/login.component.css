@@ -1,0 +1,11 @@
+.s-login{
+    background-image: url('src/assets/img/login/bg-01.jpg');
+    width: 100vw;
+    height: 100vh;
+}
+
+.container-login {
+    background-color: white;
+    height: 500px;
+    width: 500px;
+}

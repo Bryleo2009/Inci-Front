@@ -22,6 +22,10 @@
     background-color: rgb(209, 209, 209);
 }
 
+.s-conten-group > h2{
+    font-size: 25px;
+}
+
 .s-conten-group:hover {
     background-color: #3d98f3 ;
 }
