@@ -12,12 +12,14 @@ import * as $ from 'jquery';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { IncidenciaComponent } from './page/dashboard/incidencia/incidencia.component'; // Agrega esta línea
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LoginComponent } from './page/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    IncidenciaComponent
+    IncidenciaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
