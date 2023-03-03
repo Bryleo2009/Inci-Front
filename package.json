@@ -27,6 +27,7 @@
     "@types/jquery": "^3.5.16",
     "jquery": "^3.6.3",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.7.3",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },
@@ -35,6 +36,7 @@
     "@angular/cdk": "^15.2.0",
     "@angular/cli": "~15.1.4",
     "@angular/compiler-cli": "^15.1.0",
+    "@types/bootstrap": "^5.2.6",
     "@types/jasmine": "~4.3.0",
     "bootstrap": "^5.3.0-alpha1",
     "jasmine-core": "~4.5.0",
