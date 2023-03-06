@@ -15,6 +15,7 @@ import { NgbTypeahead, NgbTypeaheadConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Subject, merge } from 'rxjs';
 import { UnidadRecep } from '../../../_model/unidadRecep';
 import { Procesos } from '../../../_model/procesos';
+import { AuthService } from '../../../_service/rutas/auth.service';
 
 @Component({
   selector: 'app-incidencia',
@@ -24,7 +25,8 @@ import { Procesos } from '../../../_model/procesos';
 export class IncidenciaComponent implements OnInit {
   constructor(
     private server: UnidadRecepService,
-    private general: AppComponent
+    private general: AppComponent,
+    private almacen: AuthService
   ) {}
 
   options: string[] = ['Opción 1', 'Opción 2', 'Opción 3', 'Opción 4'];
@@ -32,7 +34,7 @@ export class IncidenciaComponent implements OnInit {
   procesos!: FormGroup;
   opciones: Procesos[] = [];
   ngOnInit(): void {
-    this.server.listProcess('').subscribe(
+    this.server.listProcess(this.almacen.getToken()).subscribe(
       (data) => {
         for (let i = 0; i < data.length; i++) {
           const proceso = new Procesos();
@@ -51,7 +53,7 @@ export class IncidenciaComponent implements OnInit {
     );
 
     this.selectedOption = '';
-    this.server.listar('').subscribe(
+    this.server.listar(this.almacen.getToken()).subscribe(
       (data) => {
         for (var i = 0; i < data.length; i++) {
           this.options.push(data[i]);
@@ -131,7 +133,7 @@ export class IncidenciaComponent implements OnInit {
       confirmButtonText: 'Aceptar',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.server.lote(this.unaUnidad.nro_caja, '').subscribe(
+        this.server.lote(this.unaUnidad.nro_caja, this.almacen.getToken()).subscribe(
           (data) => {
             this.server
               .updateUR(
@@ -141,7 +143,7 @@ export class IncidenciaComponent implements OnInit {
                 this.unaUnidad.nro_folio,
                 this.unaUnidad.DT,
                 data,
-                ''
+                this.almacen.getToken()
               )
               .subscribe(
                 (data2) => {
@@ -154,7 +156,7 @@ export class IncidenciaComponent implements OnInit {
                     timer: 1500,
                   });
                   this.options = [];
-                  this.server.listar('').subscribe(
+                  this.server.listar(this.almacen.getToken()).subscribe(
                     (data) => {
                       for (var i = 0; i < data.length; i++) {
                         this.options.push(data[i]);
@@ -213,7 +215,7 @@ export class IncidenciaComponent implements OnInit {
   ///relleno de datos automaticods
   onInputChange() {
     if (this.filter.length > 5) {
-      this.server.listarPorId(this.filter, '').subscribe((data) => {
+      this.server.listarPorId(this.filter, this.almacen.getToken()).subscribe((data) => {
         console.table(data);
         this.form.get('inputNR')?.setValue(data.unidad_recepcion);
         this.form.get('inputNP')?.setValue(data.nro_alterno);
@@ -222,7 +224,7 @@ export class IncidenciaComponent implements OnInit {
         this.procesoElegido = data.DT;
         this.idUR = data.Id;
       });
-      this.server.proceso(this.filter, '').subscribe(
+      this.server.proceso(this.filter, this.almacen.getToken()).subscribe(
         (error) => {},
         (data) => {
           this.procesos.get('inputBUR')?.setValue(data);
@@ -247,7 +249,7 @@ export class IncidenciaComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.isLoading = true;
-        this.server.update(this.idUR, selectedOption, '').subscribe(
+        this.server.update(this.idUR, selectedOption, this.almacen.getToken()).subscribe(
           () => {
             this.isLoading = false;
             this.clear();

@@ -40,7 +40,7 @@
                     <!-- <input type="text" formControlName="inputTD" class="form-control" id="inputTD"> -->
                     <select #selectProcess class="form-select" aria-label="Default select example">
                         <option [selected]="procesoElegido === 0" disabled>Elegir Tipo de Documental</option>
-                        <option *ngFor="let opcion of opciones" [value]="opcion.Id" [selected]="opcion.Id === procesoElegido">{{opcion.Id + ' | ' + opcion.nombre}}</option>
+                        <option *ngFor="let opcion of opciones" [value]="opcion.Id" [selected]="opcion.Id === procesoElegido">{{opcion.nombre}}</option>
                     </select>
                 </div>
             </div>

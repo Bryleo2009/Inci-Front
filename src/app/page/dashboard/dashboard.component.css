@@ -34,3 +34,22 @@
     background-color: var(--color-prin);
     color: var(--color-white);
 }
+
+.s-dash-conten {
+    height: 100%;
+    width: 100%;
+}
+
+.menu-item-login {
+    padding: 0 !important;
+    cursor: pointer;
+}
+
+.menu-item-login>i {
+    font-size: 25px;
+    color: var(--color-prin);
+}
+
+.menu-item-login:hover>i {
+    color: var(--color-black);
+}

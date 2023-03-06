@@ -17,48 +17,53 @@ export class UnidadRecepService {
 
   listarPorId(id: string, token: string): Observable<UnidadRecep> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    //return this.http.get<UnidadRecep>(`${this.url}/${id}`, { headers });
-    return this.http.get<UnidadRecep>(`${this.url}/${id}`);
+    return this.http.get<UnidadRecep>(`${this.url}/${id}`, { headers });
+    //return this.http.get<UnidadRecep>(`${this.url}/${id}`);
   }
 
   listar(token: string): Observable<string> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    //return this.http.get<UnidadRecep>(`${this.url}/${id}`, { headers });
-    return this.http.get<string>(`${this.url}`);
+    return this.http.get<string>(`${this.url}`, { headers });
+   // return this.http.get<string>(`${this.url}`);
   }
 
   proceso(id: string, token: string): Observable<string> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    //return this.http.get<UnidadRecep>(`${this.url}/${id}`, { headers });
-    return this.http.get<string>(`${this.url}/proceso/${id}`).pipe(
+    return this.http.get<string>(`${this.url}/proceso/${id}`, { headers }).pipe(
       catchError((errorResponse) => {
         const message = errorResponse.error.text; // Obtiene el campo 'text' de la respuesta
         return throwError(message); // Lanza un error con el mensaje obtenido
       })
-    );
+    );;
+    /*return this.http.get<string>(`${this.url}/proceso/${id}`).pipe(
+      catchError((errorResponse) => {
+        const message = errorResponse.error.text; // Obtiene el campo 'text' de la respuesta
+        return throwError(message); // Lanza un error con el mensaje obtenido
+      })
+    );*/
   }
 
   update(UR: number, newProcess: string, token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const params = new HttpParams().set('UR', UR).set('newProcess', newProcess);
-    return this.http.put(`${this.url}`, {}, { /*headers,*/ params });
+    return this.http.put(`${this.url}`, {}, { headers, params });
   }
 
   listProcess (token: string): Observable<Procesos[]> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    //return this.http.get<UnidadRecep>(`${this.url}/${id}`, { headers });
-    return this.http.get<Procesos[]>(`${this.url}/procesos`);
+    return this.http.get<Procesos[]>(`${this.url}/procesos`, { headers });
+    //return this.http.get<Procesos[]>(`${this.url}/procesos`);
   }
 
   lote(id: string,token: string): Observable<number> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    //return this.http.get<UnidadRecep>(`${this.url}/${id}`, { headers });
-    return this.http.get<number>(`${this.url}/lote/${id}`);
+    return this.http.get<number>(`${this.url}/lote/${id}`, { headers });
+    //return this.http.get<number>(`${this.url}/lote/${id}`);
   }
 
   updateUR(id:number,UR:string,NA:string,NF:number,DT:number,LT:number, token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const params = new HttpParams().set('id', id).set('UR',UR).set('NA',NA).set('NF',NF).set('DT',DT).set('LT',LT);
-    return this.http.put(`${this.url}/update`, {}, { /*headers,*/ params });
+    return this.http.put(`${this.url}/update`, {}, { headers, params });
   }
 }
