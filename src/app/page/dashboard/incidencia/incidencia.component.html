@@ -1,4 +1,8 @@
 <section class="s-inciden">
+    <div class="spiner d-flex justify-content-center align-items-center" *ngIf="isLoading">
+        <mat-spinner></mat-spinner>
+    </div>
+    
     <div class="row modul-inciden">
         <div class="col-12 d-flex title justify-content-center align-items-center mb-3  mt-3">
             <h1>Modulo de Incidencias</h1>
@@ -9,7 +13,7 @@
                 <div class="col-sm-5">
                     <input id="inputSelected" type="text" placeholder="Número de Unidad..." class="form-control"
                         [(ngModel)]="filter" [ngbTypeahead]="search" [resultFormatter]="formatter"
-                        [inputFormatter]="formatter" formControlName="selected" (ngModelChange)="onInputChange()"/>
+                        [inputFormatter]="formatter" formControlName="selected" (ngModelChange)="onInputChange()" (keydown)="onKeyDown($event)"/>
                 </div>
             </div>
             <div class="mb-3 row d-flex justify-content-center align-items-center">
@@ -43,8 +47,8 @@
                 </div>
             </div>
             <div class="botones row d-flex justify-content-evenly mt-3">
-                <button class="btn btn-primary col-2" type="button">Actualizar</button>
-                <button class="btn btn-secondary col-2" type="button">Cancelar</button>
+                <button class="btn btn-primary col-2" type="submit">Actualizar</button>
+                <button class="btn btn-secondary col-2" type="button" (click)="clear()">Limpiar</button>
             </div>
         </form>
     </div>
@@ -53,32 +57,28 @@
         <div class="col-12 d-flex title justify-content-center align-items-center mb-3">
             <h1>Retroceder Proceso</h1>
         </div>
-        <form [formGroup]="procesos" #frmEmpresa="ngForm" (ngSubmit)="evaluar()" class="col-8 row form">
+        <form [formGroup]="procesos" #frmEmpresa="ngForm"  class="col-8 row form" (ngSubmit)="cambiar()">
             <div class="mb-3 col row d-flex justify-content-center mb-3">
                 <label for="inputBUR" class="col-sm-2 col-form-label">Desde:</label>
                 <div class="col-sm">
-                    <input type="text" formControlName="inputBUR" class="form-control" id="inputNC">
+                    <input type="text" formControlName="inputBUR" class="form-control" id="inputBUR">
                 </div>
             </div>
             <div class="mb-3 col row d-flex justify-content-center mb-3">
                 <label for="inputNR" class="col-sm-2 col-form-label">Hasta:</label>
                 <div class="col-sm">
-                    <select class="form-select" aria-label="Default select example" [disabled]="disableSelect.value">
-                        <option selected disabled>Elegir Proceso</option>
-                        <option value="PROCESS_PREPARACION">PROCESS_PREPARACION</option>
-                        <option value="PROCESS_FEDATARIO" disabled>PROCESS_FEDATARIO</option>
-                        <option value="PROCESS_DIGITACIODOS">PROCESS_DIGITACIODOS</option>
-                        <option value="PROCESS_DIGITALIZACION">PROCESS_DIGITALIZACION</option>
-                        <option value="PROCESS_MEDIOS">PROCESS_MEDIOS</option>
-                        <option value="PROCESS_RECEPCION">PROCESS_RECEPCION</option>
-                        <option value="PROCESS_REPROCESO">PROCESS_REPROCESO</option>
-                        <option value="PROCESS_CONTROL_CALIDAD_INTERNO">PROCESS_CONTROL_CALIDAD_INTERNO</option>
+                    <select #selectElement class="form-select" aria-label="Default select example">
+                        <option [selected]="selectedOption === ''" disabled>Elegir Proceso</option>
+                        <option value="PROCESS_DIGITALIZACION" [disabled]="selectedOption === 'PROCESS_DIGITALIZACION'">DIGITALIZACIÓN</option>
+                        <option value="PROCESS_DIGITACION" [disabled]="selectedOption === 'PROCESS_DIGITACION'">DIGITACIÓN</option>
+                        <option value="PROCESS_DIGITACIODOS" [disabled]="selectedOption === 'PROCESS_DIGITACIODOS'">DIGITACIÓN 2</option>
+                        <option value="PROCESS_CONTROL_CALIDAD_INTERNO" [disabled]="selectedOption === 'PROCESS_CONTROL_CALIDAD_INTERNO'">CONTROL DE CALIDAD</option>
+                        <option value="PROCESS_FEDATARIO" [disabled]="selectedOption === 'PROCESS_FEDATARIO'">FEDATARIO</option>
                     </select>
                 </div>
             </div>
             <div class="botones row d-flex justify-content-evenly mt-3">
-                <button class="btn btn-danger col-3" type="button">Retroceder</button>
-                <button class="btn btn-secondary col-3" type="button">Cancelar</button>
+                <button class="btn btn-danger col-3" type="submit">Retroceder</button>
             </div>
         </form>
     </div>

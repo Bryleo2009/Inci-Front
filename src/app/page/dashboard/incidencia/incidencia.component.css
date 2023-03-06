@@ -2,3 +2,11 @@
     width: 42%;
     height: 20%;
 }
+
+.spiner {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.24);
+    position: absolute;
+    z-index: 2;
+}
