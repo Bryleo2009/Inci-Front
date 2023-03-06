@@ -31,19 +31,23 @@
             <div class="mb-3 row d-flex justify-content-center align-items-center">
                 <label for="inputNF" class="col-sm-2 col-form-label">Número de Folios</label>
                 <div class="col-sm-5">
-                    <input type="number" formControlName="inputNF" class="form-control" id="inputNF">
+                    <input type="number" min="0" formControlName="inputNF" class="form-control" id="inputNF">
                 </div>
             </div>
             <div class="mb-3 row d-flex justify-content-center align-items-center">
                 <label for="inputTD" class="col-sm-2 col-form-label">Tipo Documental</label>
                 <div class="col-sm-5">
-                    <input type="text" formControlName="inputTD" class="form-control" id="inputTD">
+                    <!-- <input type="text" formControlName="inputTD" class="form-control" id="inputTD"> -->
+                    <select #selectProcess class="form-select" aria-label="Default select example">
+                        <option [selected]="procesoElegido === 0" disabled>Elegir Tipo de Documental</option>
+                        <option *ngFor="let opcion of opciones" [value]="opcion.Id" [selected]="opcion.Id === procesoElegido">{{opcion.Id + ' | ' + opcion.nombre}}</option>
+                    </select>
                 </div>
             </div>
             <div class="mb-3 row d-flex justify-content-center align-items-center">
                 <label for="inputNC" class="col-sm-2 col-form-label">Número de Caja</label>
                 <div class="col-sm-5">
-                    <input type="number" formControlName="inputNC" class="form-control" id="inputNC">
+                    <input type="text" formControlName="inputNC" class="form-control" id="inputNC">
                 </div>
             </div>
             <div class="botones row d-flex justify-content-evenly mt-3">

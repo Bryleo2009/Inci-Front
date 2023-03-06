@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { UnidadRecep } from '../../_model/unidadRecep';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { Procesos } from '../../_model/procesos';
 
 @Injectable({
   providedIn: 'root',
@@ -41,5 +42,23 @@ export class UnidadRecepService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const params = new HttpParams().set('UR', UR).set('newProcess', newProcess);
     return this.http.put(`${this.url}`, {}, { /*headers,*/ params });
+  }
+
+  listProcess (token: string): Observable<Procesos[]> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    //return this.http.get<UnidadRecep>(`${this.url}/${id}`, { headers });
+    return this.http.get<Procesos[]>(`${this.url}/procesos`);
+  }
+
+  lote(id: string,token: string): Observable<number> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    //return this.http.get<UnidadRecep>(`${this.url}/${id}`, { headers });
+    return this.http.get<number>(`${this.url}/lote/${id}`);
+  }
+
+  updateUR(id:number,UR:string,NA:string,NF:number,DT:number,LT:number, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const params = new HttpParams().set('id', id).set('UR',UR).set('NA',NA).set('NF',NF).set('DT',DT).set('LT',LT);
+    return this.http.put(`${this.url}/update`, {}, { /*headers,*/ params });
   }
 }
