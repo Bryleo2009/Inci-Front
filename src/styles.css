@@ -199,3 +199,20 @@ img {
     background-color: #1460ad;
     border: 0;
 }
+
+.s-footer-social-copy,
+ofsystem>a:link,
+ofsystem>a:visited,
+ofsystem>a:active {
+  text-decoration: none;
+  color: #111111;
+  font-size: 14px;
+}
+
+.s-footer-social-copy {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--color-white);
+    padding: 0px 5px;
+}

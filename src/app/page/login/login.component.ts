@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Login } from '../../_model/login';
 import { AppComponent } from '../../app.component';
@@ -12,13 +12,26 @@ import { LoginService } from '../../_service/util/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit, AfterViewInit {
 
   constructor(public login: LoginService,
     private general: AppComponent,
     private router: Router,
     private http: HttpClient,
     private almacen: AuthService,){}
+
+
+    ngAfterViewInit(): void {
+      // Código JavaScript aquí
+      var creditaje = 'ofsystem';
+      var link = 'https://bryleo2009.github.io/Creditaje-OfSystem/';
+      var text = '© Todos los derechos reservados - 2023';
+      var element = document.querySelector('.s-footer-social-copy');
+      element!.innerHTML = '<' + creditaje + '>' +
+        '<a href=' + '"' + link + '"' + 'target="_blank" >' + text +
+        '</a>' +
+        '</' + creditaje + '>';
+    }
 
  //hacer que funcione el login
  form!: FormGroup;
